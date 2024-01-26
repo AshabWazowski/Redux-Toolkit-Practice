@@ -1,2 +1,1 @@
-MONGODB_URL="mongodb+srv://toxogir748:GkXchmwv07JXeu7Y@cluster0.brhkw27.mongodb.net/?retryWrites=true&w=majority"
 PORT=4554
