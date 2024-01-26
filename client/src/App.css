@@ -10,6 +10,14 @@
     padding: 1rem 6%;
     flex-direction: column;
 }
+.login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    padding: 1rem 6%;
+    flex-direction: column;
+}
 
 .form{
     display: flex;
@@ -21,4 +29,22 @@
 .form-fields{
     display: flex;
     flex-direction: column;
+}
+
+.landing{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+}
+.card{
+    width: 300px;
+    height: 400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    padding: 1rem 2%;
+    box-shadow: 10px 10px 10px rgba(0,0,0,0.6);
 }
