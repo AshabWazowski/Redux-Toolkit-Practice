@@ -1,6 +1,7 @@
 import React from 'react'
 import { Formik } from "formik";
 import { useNavigate } from "react-router-dom";
+import { login } from '../API handling';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -9,11 +10,18 @@ const Login = () => {
         email: "",
         password: "",
       };
-      const handleLoginSubmit = (values) =>{
+      const handleLoginSubmit = async (values) =>{
                 console.log(values);
-                if(values.email !== ''){
-                    navigate('/home')
+                if(values.email !== '' && values.password !== '')
+                {
+                 const res = await login(values);
+                 if(res === 200){
+                   navigate('/home')                   
                 }
+                else{
+                  window.alert("Invalid Credentials")
+                }
+              }
             }
   return (
     <div className='login'>

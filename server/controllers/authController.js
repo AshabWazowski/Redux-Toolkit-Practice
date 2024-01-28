@@ -1,4 +1,4 @@
-import User from "../models/User";
+import User from "../models/User.js";
 
 export const register = async (req, res) =>{
     const {email, fullName, password } = req.body;
@@ -25,6 +25,7 @@ export const register = async (req, res) =>{
 
 export const login = async (req, res) =>{
   const {email, password} = req.body;
+  console.log(email, password);
   try{
     const user = await User.findOne({email});
     if(!user){
@@ -34,10 +35,10 @@ export const login = async (req, res) =>{
  if(password !== user.password){
     return res.status(400).json({message:"Invalid Password"});
  }
-
-    return res.status(200).json(user);
+   res.status(200).json(user);
 
   }catch(error){
+    console.log(error.message);
     return res.status(400).json({message:error.message});
   }
 
