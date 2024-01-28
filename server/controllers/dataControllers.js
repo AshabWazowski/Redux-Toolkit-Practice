@@ -1,4 +1,4 @@
-import Data from "../models/Data";
+import Data from "../models/Data.js";
 
 export const addData = async (req, res) =>{
     const {userId , title, text} = req.body;
