@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Formik } from "formik";
 import * as yup from "yup";
+import { useSelector, useDispatch } from "react-redux";
+import { addData, getData } from "../API handling";
+import { setData } from "../stateHandler";
+
 
 const Home = () => {
+  const {_id} = useSelector((state) => state.user);
+  const data = useSelector((state)=> state.data)
+  const dispatch = useDispatch();
   const initialValues = {
     title: "",
     text: "",
+    userId:'',
   };
 
   const validation = yup.object().shape({
@@ -13,9 +21,23 @@ const Home = () => {
     text: yup.string().required("required"),
   });
 
-  const handleHomeSubmit = (values) => {
-    console.log(values);
+  const handleData = async () =>{
+    const dataSet = await getData(_id);
+    console.log(dataSet);
+    dispatch(setData(dataSet.data));
+  }
+
+  useEffect(()=>{
+    handleData();
+  }, [])
+
+  const handleHomeSubmit = async (values) => {   
+    values.userId = _id;
+    await addData(values);
+    handleData();
   };
+
+  console.log(_id);
 
   return (
     <div className="container">
@@ -54,6 +76,12 @@ const Home = () => {
             </form>
           )}
         </Formik>
+        <div>
+        <ul>
+            {data.map((item, index)=>(<li key={index}>{item.title}</li>)
+            )}
+        </ul>
+        </div>
     </div>
   );
 };
