@@ -1,36 +1,41 @@
-import React from 'react'
+import React from "react";
 import { Formik } from "formik";
 import { useNavigate } from "react-router-dom";
-import { login } from '../API handling';
+import { login } from "../API handling";
+import { useDispatch } from "react-redux";
+import { setLogin } from "../stateHandler/index.js";
+
+
+
 
 const Login = () => {
-    const navigate = useNavigate();
 
-    const initialValues = {
-        email: "",
-        password: "",
-      };
-      const handleLoginSubmit = async (values) =>{
-                console.log(values);
-                if(values.email !== '' && values.password !== '')
-                {
-                 const res = await login(values);
-                 if(res === 200){
-                   navigate('/home')                   
-                }
-                else{
-                  window.alert("Invalid Credentials")
-                }
-              }
-            }
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  
+  const initialValues = {
+    email: "",
+    password: "",
+  };
+
+  const handleLoginSubmit = async (values) => {
+  const loggedIn = await login(values);
+
+    if(loggedIn){
+        dispatch(setLogin(loggedIn.data))
+      console.log(setLogin())
+      navigate('/home')
+    }
+
+
+  };
+
+
   return (
-    <div className='login'>
-    <h1>Login</h1>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={handleLoginSubmit}
-      >
-        {({ values,handleSubmit, handleChange }) => (
+    <div className="login">
+      <h1>Login</h1>
+      <Formik initialValues={initialValues} onSubmit={handleLoginSubmit}>
+        {({ values, handleSubmit, handleChange }) => (
           <form onSubmit={handleSubmit}>
             <div className="form">
               <div className="form-fields">
@@ -60,8 +65,8 @@ const Login = () => {
           </form>
         )}
       </Formik>
-      </div>
-  )
-}
+    </div>
+  );
+};
 
-export default Login
+export default Login;
