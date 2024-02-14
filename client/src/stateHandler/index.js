@@ -15,10 +15,10 @@ export const authReducer = createSlice({
         },
         setData: (state, action) => {
               state.data = action.payload;  
-        }
+        },
     },
 });
 
-export const {setLogin, setData} = authReducer.actions;
+export const {setLogin, setData, setEditData} = authReducer.actions;
 
 export default authReducer.reducer;

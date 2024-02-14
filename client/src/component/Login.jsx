@@ -23,7 +23,6 @@ const Login = () => {
 
     if(loggedIn){
         dispatch(setLogin(loggedIn.data))
-      console.log(setLogin())
       navigate('/home')
     }
 
