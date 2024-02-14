@@ -66,3 +66,35 @@
     flex-direction: column;
     gap: 1.5rem;
 }
+
+.loading{
+    position: absolute;
+    top: 50%;
+    left: 40%;
+}
+
+.btn{
+    padding: 0.5 1rem;
+    margin: 0px 15px;
+}
+.edit{
+    background-color: green;
+    color: black;
+    font-weight: bold;
+}
+.delete{
+    background-color: red;
+    color: white;
+    font-weight: bold;
+}
+
+.list{
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    gap: 1rem;
+    flex-direction: row;
+}
+.list li{
+    list-style: none;
+}
